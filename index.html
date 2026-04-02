@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaksoApp - Digital Menu Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app-container">
+    <header class="header">
+        <h1>Bakso<span>App</span></h1>
+        <p>Solusi Makan Enak Tanpa Antre</p>
+    </header>
+
+    <main class="main-grid">
+        <section id="step-1" class="card">
+            <h3>Data Pelanggan</h3>
+            <div class="input-group">
+                <label>Nama Lengkap</label>
+                <input type="text" id="cust-name" placeholder="Contoh: Ilham">
+            </div>
+            <div class="input-group">
+                <label>Nomor Meja</label>
+                <input type="number" id="cust-table" placeholder="00">
+            </div>
+            <button class="btn btn-primary" onclick="startOrder()">Mulai Pesan</button>
+        </section>
+
+        <section id="step-2" class="card hidden">
+            <h3 id="menu-title">Pilih Menu</h3>
+            <div id="menu-list">
+                <div class="menu-item">
+                    <div><b>Bakso Urat</b><br><span class="price">Rp 25.000</span></div>
+                    <button class="btn-add" onclick="addItem(25000)">+</button>
+                </div>
+                <div class="menu-item">
+                    <div><b>Bakso Telur</b><br><span class="price">Rp 22.000</span></div>
+                    <button class="btn-add" onclick="addItem(22000)">+</button>
+                </div>
+                <div class="menu-item">
+                    <div><b>Es Teh Manis</b><br><span class="price">Rp 5.000</span></div>
+                    <button class="btn-add" onclick="addItem(5000)">+</button>
+                </div>
+            </div>
+            
+            <div class="total-section">
+                <h4 id="total-display">Total: Rp 0</h4>
+            </div>
+
+            <button id="btn-pay" class="btn btn-success" onclick="showQRIS()">Bayar Sekarang</button>
+            
+            <div id="qris-area" class="hidden text-center">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BaksoApp" class="qris-img">
+                <p class="qris-text">SILAKAN SCAN UNTUK BAYAR</p>
+                <button class="btn btn-primary" onclick="confirmPayment()">Saya Sudah Bayar</button>
+            </div>
+        </section>
+
+        <section id="step-3" class="card hidden text-center">
+            <div id="stat-icon" class="status-icon pulse">⌛</div>
+            <h2 id="stat-title">Menunggu Verifikasi</h2>
+            <p id="stat-desc">Kasir sedang mengecek pembayaran...</p>
+            
+            <div class="user-badge">
+                <p>Pelanggan: <b id="res-name">-</b></p>
+                <p>No. Meja: <b id="res-table">-</b></p>
+            </div>
+
+            <button class="admin-trigger" onclick="adminAction()"></button>
+            
+            <button id="btn-reset" class="btn btn-primary hidden" onclick="location.reload()">Pesan Baru</button>
+        </section>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
