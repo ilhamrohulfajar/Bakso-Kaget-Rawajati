@@ -1,26 +1,41 @@
 let cart = [];
 
-// THEME TOGGLE
+// THEME TOGGLE LOGIC
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('theme-icon');
-    body.classList.toggle('dark-theme');
-    localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
-    icon.classList.replace(body.classList.contains('dark-theme') ? 'fa-moon' : 'fa-sun', body.classList.contains('dark-theme') ? 'fa-sun' : 'fa-moon');
+    
+    if (body.classList.contains('dark-theme')) {
+        body.classList.replace('dark-theme', 'light-theme');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.replace('light-theme', 'dark-theme');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+    }
 }
 
-// START ORDER
+window.onload = () => {
+    // Default is dark, but check if user explicitly set light
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.replace('dark-theme', 'light-theme');
+        document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
+    }
+};
+
+// ORDER FLOW
 function startOrder() {
     const name = document.getElementById('cust-name').value;
     const table = document.getElementById('cust-table').value;
-    if(!name || !table) return alert("Isi nama ama meja dulu dong!");
+    if(!name || !table) return alert("Identify yourself first!");
 
     localStorage.setItem('u_name', name);
     localStorage.setItem('u_table', table);
 
     document.getElementById('step-2').classList.remove('hidden');
-    document.getElementById('menu-title').innerText = `Punya ${name}`;
-    document.getElementById('step-1').style.opacity = "0.4";
+    document.getElementById('menu-title').innerText = `FOR ${name.toUpperCase()}`;
+    document.getElementById('step-1').style.opacity = "0.3";
     document.getElementById('step-1').style.pointerEvents = "none";
 }
 
@@ -33,7 +48,6 @@ function addItem(itemName, price) {
         cart.push({ name: itemName, price: price, qty: 1 });
     }
     renderCart();
-    showFeedback();
 }
 
 function removeItem(itemName) {
@@ -48,7 +62,7 @@ function removeItem(itemName) {
 function renderCart() {
     const list = document.getElementById('cart-items-list');
     const totalDisp = document.getElementById('total-display');
-    list.innerHTML = cart.length === 0 ? '<p class="empty-msg">Belum ada pesanan nih...</p>' : '';
+    list.innerHTML = cart.length === 0 ? '<p class="empty-msg">Your cart is empty.</p>' : '';
     
     let total = 0;
     cart.forEach(item => {
@@ -60,22 +74,14 @@ function renderCart() {
                     <button class="btn-qty" onclick="removeItem('${item.name}')">-</button>
                     <button class="btn-qty" onclick="addItem('${item.name}', ${item.price})">+</button>
                 </div>
-            </div>
-        `;
+            </div>`;
     });
     totalDisp.innerText = `Total: Rp ${total.toLocaleString()}`;
 }
 
-function showFeedback() {
-    const pop = document.createElement('div');
-    pop.className = 'feedback-pop';
-    pop.innerHTML = '<i class="fas fa-check-circle"></i> Added to Cart!';
-    document.body.appendChild(pop);
-    setTimeout(() => pop.remove(), 1000);
-}
-
+// PAYMENT & FINAL STATUS
 function showQRIS() {
-    if(cart.length === 0) return alert("Keranjang lo masih kosong!");
+    if(cart.length === 0) return alert("Choose your meal first!");
     document.getElementById('menu-wrapper').classList.add('hidden');
     document.getElementById('qris-area').classList.remove('hidden');
 }
@@ -85,23 +91,23 @@ function confirmPayment() {
     const menuStr = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
 
     document.getElementById('step-3').classList.remove('hidden');
-    document.getElementById('step-2').style.opacity = "0.4";
-    document.getElementById('step-2').style.pointerEvents = "none";
+    document.getElementById('step-2').style.opacity = "0.3";
     
     document.getElementById('res-name').innerText = localStorage.getItem('u_name');
     document.getElementById('res-table').innerText = localStorage.getItem('u_table');
     document.getElementById('res-summary').innerHTML = `
-        <p><b>Menu:</b> ${menuStr}</p>
-        <p><b>Notes:</b> ${notes.join(', ') || 'Polos'}</p>
-        <p style="margin-top:10px; color:var(--primary)"><i>Pembayaran lagi diverifikasi admin...</i></p>
+        <p><b>MENU:</b> ${menuStr}</p>
+        <p><b>EXTRA:</b> ${notes.join(', ') || 'NONE'}</p>
     `;
 }
 
+// ADMIN SECRET ACTION
 function adminAction() {
     const icon = document.getElementById('stat-icon');
     icon.innerText = "👨‍🍳";
     icon.classList.remove('pulse');
-    document.getElementById('stat-title').innerText = "Lagi Dimasak!";
-    document.getElementById('stat-title').style.color = "#27ae60";
-    setTimeout(() => { document.getElementById('btn-reset').classList.remove('hidden'); }, 1500);
+    document.getElementById('stat-title').innerText = "COOKING...";
+    document.getElementById('stat-title').style.color = "var(--accent)";
+    document.querySelector('.admin-trigger').classList.add('hidden');
+    setTimeout(() => { document.getElementById('btn-reset').classList.remove('hidden'); }, 1000);
 }
