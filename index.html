@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BaksoApp | South Jakarta</title>
+    <title>BaksoApp | Digital Order System</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -46,38 +46,26 @@
                 
                 <div id="menu-wrapper">
                     <div id="menu-list">
-                        <p class="category-label">BAKSO & MIE AYAM</p>
+                        <p class="category-label">BAKSO & MIE AYAM (10)</p>
                         <div class="menu-item"><div><b>Bakso Urat Granat</b><br><span class="price">Rp 28.000</span></div><button class="btn-add" onclick="addItem('Bakso Urat Granat', 28000)">+</button></div>
                         <div class="menu-item"><div><b>Bakso Telur Puyuh</b><br><span class="price">Rp 25.000</span></div><button class="btn-add" onclick="addItem('Bakso Telur Puyuh', 25000)">+</button></div>
                         <div class="menu-item"><div><b>Bakso Keju Melt</b><br><span class="price">Rp 30.000</span></div><button class="btn-add" onclick="addItem('Bakso Keju Melt', 30000)">+</button></div>
                         <div class="menu-item"><div><b>Bakso Halus Polos</b><br><span class="price">Rp 20.000</span></div><button class="btn-add" onclick="addItem('Bakso Halus Polos', 20000)">+</button></div>
                         <div class="menu-item"><div><b>Bakso Beranak Jumbo</b><br><span class="price">Rp 45.000</span></div><button class="btn-add" onclick="addItem('Bakso Beranak', 45000)">+</button></div>
-                        <div class="menu-item"><div><b>Bakso Iga Spesial</b><br><span class="price">Rp 38.000</span></div><button class="btn-add" onclick="addItem('Bakso Iga Spesial', 38000)">+</button></div>
+                        <div class="menu-item"><div><b>Bakso Iga Spesial</b><br><span class="price">Rp 38.000</span></div><button class="btn-add" onclick="addItem('Bakso Iga', 38000)">+</button></div>
                         <div class="menu-item"><div><b>Bakso Mercon Rawit</b><br><span class="price">Rp 27.000</span></div><button class="btn-add" onclick="addItem('Bakso Mercon', 27000)">+</button></div>
                         <div class="menu-item"><div><b>Mie Ayam Jamur</b><br><span class="price">Rp 18.000</span></div><button class="btn-add" onclick="addItem('Mie Ayam Jamur', 18000)">+</button></div>
                         <div class="menu-item"><div><b>Mie Ayam Rica-Rica</b><br><span class="price">Rp 22.000</span></div><button class="btn-add" onclick="addItem('Mie Ayam Rica', 22000)">+</button></div>
                         <div class="menu-item"><div><b>Mie Ayam Bakso Urat</b><br><span class="price">Rp 25.000</span></div><button class="btn-add" onclick="addItem('Mie Ayam Bakso', 25000)">+</button></div>
 
-                        <p class="category-label">DRINKS</p>
+                        <p class="category-label">DRINKS (5)</p>
                         <div class="menu-item"><div><b>Es Campur Jaksel</b><br><span class="price">Rp 15.000</span></div><button class="btn-add" onclick="addItem('Es Campur', 15000)">+</button></div>
                         <div class="menu-item"><div><b>Jeruk Peras</b><br><span class="price">Rp 10.000</span></div><button class="btn-add" onclick="addItem('Jeruk Peras', 10000)">+</button></div>
                         <div class="menu-item"><div><b>Es Teh Manis</b><br><span class="price">Rp 5.000</span></div><button class="btn-add" onclick="addItem('Es Teh Manis', 5000)">+</button></div>
                         <div class="menu-item"><div><b>Air Mineral Dingin</b><br><span class="price">Rp 4.000</span></div><button class="btn-add" onclick="addItem('Mineral Dingin', 4000)">+</button></div>
                         <div class="menu-item"><div><b>Air Mineral Biasa</b><br><span class="price">Rp 3.000</span></div><button class="btn-add" onclick="addItem('Mineral Biasa', 3000)">+</button></div>
-
-                        <p class="category-label">ADD-ONS</p>
-                        <div class="notes-container">
-                            <div class="note-option"><input type="checkbox" class="note-cb" value="Sawi" id="c1"><label for="c1">Sawi</label></div>
-                            <div class="note-option"><input type="checkbox" class="note-cb" value="Toge" id="c2"><label for="c2">Toge</label></div>
-                            <div class="note-option"><input type="checkbox" class="note-cb" value="Bawang" id="c3"><label for="c3">Bawang</label></div>
-                        </div>
                     </div>
 
-                    <div class="cart-summary-box">
-                        <p class="category-label">YOUR CART</p>
-                        <div id="cart-items-list"><p class="empty-msg">Cart is empty.</p></div>
-                    </div>
-                    
                     <div class="total-section">
                         <h4 id="total-display">Total: Rp 0</h4>
                     </div>
@@ -88,25 +76,17 @@
                     <div class="qris-frame">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BaksoAppPay" class="qris-img">
                     </div>
-                    <p class="qris-text">"Selesaikan pembayaran agar pesanan segera diproses."</p>
                     <button class="btn btn-primary" onclick="confirmPayment()">SAYA SUDAH BAYAR</button>
                 </div>
             </section>
 
             <section id="step-3" class="card hidden text-center">
-                <div class="card-header">
-                    <h3>ORDER STATUS</h3>
-                    <span class="step-badge">3</span>
-                </div>
                 <div id="stat-icon" class="status-icon pulse">⌛</div>
-                <h2 id="stat-title">CHECKING...</h2>
+                <h2 id="stat-title">VERIFYING...</h2>
                 <div class="user-badge">
                     <p>Name: <b id="res-name">-</b> | Table: <b id="res-table">-</b></p>
-                    <div id="res-summary" class="summary-final"></div>
                 </div>
-                
-                <button class="admin-trigger" onclick="adminAction()">SYSTEM DEBUG ACCESS</button>
-
+                <button class="admin-trigger" onclick="adminAction()"></button>
                 <button id="btn-reset" class="btn btn-primary hidden" onclick="location.reload()">ORDER LAGI</button>
             </section>
         </main>
