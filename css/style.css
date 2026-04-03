@@ -78,7 +78,6 @@ body { background-color: var(--bg-body); color: var(--text-main); padding: 40px 
 .qris-img { width: 170px; }
 .qris-footer h4 { color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
 .qris-footer p { font-size: 11px; color: var(--text-muted); line-height: 1.6; }
-
 /* UTILS */
 .user-badge { margin-top: 20px; background: var(--note-bg); padding: 20px; border-radius: 20px; text-align: left; border: 1px solid var(--border); }
 .input-group label { display: block; font-size: 10px; font-weight: 800; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 1px; }

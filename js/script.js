@@ -98,7 +98,6 @@ function confirmPayment() {
         <p style="margin-top:5px;"><b>Notes:</b> ${notes.join(', ') || 'Normal / Tidak ada catatan'}</p>
     `;
 }
-
 function adminAction() {
     const icon = document.getElementById('stat-icon');
     icon.innerText = "👨‍🍳";
