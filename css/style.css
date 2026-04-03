@@ -90,4 +90,4 @@ input:focus { border-color: var(--primary); }
 .text-center { text-align: center; }
 .pulse { animation: pulse 2s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-.admin-trigger { width: 100%; margin-top: 40px; background: transparent; border: 1px dashed var(--border); color: var(--text-muted); padding: 10px; font-size: 9px; cursor: pointer; border-radius: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.admin-trigger { width: 100%; margin-top: 40px; background: transparent; border: 1px dashed var(--border); color: var(--text-muted); padding: 10px; font-size: 9px; cursor: pointer; border-radius: 10px; letter-spacing: 2px; text-transform: uppercase; 
